@@ -2,7 +2,7 @@ import express from 'express'
 import cors from 'cors'
 import path from 'path'
 import { fileURLToPath } from 'url'
-import { getAllUsers, createUser } from './src/controllers/userController.js'
+import { getAllUsers, createUser, getUserById, updateUser, deleteUser } from './src/controllers/userController.js'
 
 const __filename = fileURLToPath(import.meta.url)
 const __dirname = path.dirname(__filename)
@@ -25,6 +25,9 @@ app.get('/hello', (req, res) => {
 
 app.get('/api/users', getAllUsers)
 app.post('/api/users', createUser)
+app.get('/api/users/:id', getUserById)
+app.put('/api/users/:id', updateUser)
+app.delete('/api/users/:id', deleteUser)
 
 app.listen(PORT, HOST, () => {
   console.log(`🚀 Servidor rodando em http://${HOST}:${PORT}`)
